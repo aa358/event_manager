@@ -135,8 +135,8 @@ class UserCreate(UserBase):
             raise ValueError("Password must contain at least one lowercase letter.")
         if not re.search(r"\d", v):
             raise ValueError("Password must contain at least one digit.")
-        if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", v):
-            raise ValueError("Password must contain at least one special character.")
+        if not re.search(r"^(?![_-])[^!@#$%^&*(),.?\":{}|<>_-](?!.*[_-]{2})[!@#$%^&*(),.?\":{}|<>a-zA-Z0-9_-]{8,}(?<![_-])$", v):
+            raise ValueError("Password must contain at least one special character. Hyphens/Underscores are not allowed at the start or end or consecutively in the password. ")
         return v
 
     class Config:
