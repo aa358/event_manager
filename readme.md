@@ -1,6 +1,6 @@
 # Links to Issues
 
-1. https://github.com/aa358/event_manager/issues/1
+1. Unique Usernames https://github.com/aa358/event_manager/issues/1
 2. https://github.com/aa358/event_manager/issues/3
 3. https://github.com/aa358/event_manager/issues/5
 4. https://github.com/aa358/event_manager/issues/7
