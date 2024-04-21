@@ -91,6 +91,13 @@ class UserBase(BaseModel):
             raise ValueError("Full name can only contain letters, spaces, hyphens, or apostrophes.")
         return v
 
+    # Validator to ensure username length falls within the specified range
+    @validator('username')
+    def validate_username_length(cls, v):
+        if len(v) < 3 or len(v) > 50:
+            raise ValueError("Username must be between 3 and 50 characters long.")
+        return v
+
     @validator('profile_picture_url', pre=True, always=True)
     def validate_profile_picture_url(cls, v):
         if v is None:
