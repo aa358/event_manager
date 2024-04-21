@@ -110,3 +110,12 @@ def test_user_base_username_invalid(username, user_base_data):
     user_base_data["username"] = username
     with pytest.raises(ValidationError):
         UserBase(**user_base_data)
+
+# Test for username length validator
+def test_username_length_validator():
+    # Valid username length
+    valid_username = "valid_username_123"
+    try:
+        UserBase(username=valid_username, email="test@example.com")
+    except ValidationError as e:
+        pytest.fail(f"Validation failed for valid username length: {valid_username}. Exception: {e}")
