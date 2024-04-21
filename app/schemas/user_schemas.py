@@ -232,12 +232,6 @@ class UserResponse(UserBase):
             {"rel": "update", "href": "https://api.example.com/users/a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6"}
         ]
     )
-    # Custom validator to convert UUID to string
-    @validator('id', pre=True, allow_reuse=True)
-    def convert_uuid_to_string(cls, value):
-        if isinstance(value, uuid.UUID):
-            return str(value)
-        return value
     class Config:
         json_schema_extra = {
             "description": "Model for user response data.",
