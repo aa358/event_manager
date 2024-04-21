@@ -132,6 +132,13 @@ class UserCreate(UserBase):
             raise ValueError("Username already exists.")
         return v
 
+    # Validator to ensure the password meets the minimum length requirement
+    @validator('password')
+    def validate_password_length(cls, v):
+        if len(v) < 8:
+            raise ValueError("Password must be at least 8 characters long.")
+        return v
+
     @validator('password')
     def validate_password(cls, v):
         if len(v) < 8:
