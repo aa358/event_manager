@@ -44,6 +44,7 @@ from app.schemas.link_schema import Link  # Custom module, likely provides a sch
 from app.schemas.pagination_schema import EnhancedPagination  # Custom pagination schema supporting enriched functionality.
 import re  # Provides regular expression matching operations.
 import uuid  # Provides immutable UUID objects and functions for generating new UUIDs.
+from app.models.user_model import User
 
 # Define a base user model with common attributes
 class UserBase(BaseModel):
@@ -119,6 +120,10 @@ class UserCreate(UserBase):
         description="A strong password for the user's account. Must be at least 8 characters long and include uppercase and lowercase letters, a digit, and a special character.",
         example="SecurePassword123!"
     )
+    def validate_unique_username(cls, v):
+        if User.get_by_username(v):
+            raise ValueError("Username already exists.")
+        return v
 
     @validator('password')
     def validate_password(cls, v):
